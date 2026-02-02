@@ -13,6 +13,7 @@ app.disable("etag");
 app.disable("x-powered-by");
 app.set("trust proxy", true);
 
+const isProd = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 3000;
 const ABORT_TIMEOUT = 10_000;
 
@@ -24,8 +25,10 @@ app.use(
 app.use(compression());
 
 // static / client assets
-app.use("/static", express.static(resolve("client")));
-app.use(express.static(resolve("../public")));
+if (isProd) {
+  app.use("/static", express.static(resolve("client")));
+  app.use(express.static(resolve("../public")));
+}
 
 // catch-all handler
 app.all("*all", async (req, res) => {
