@@ -1,4 +1,4 @@
-export function Html({ children }) {
+export function Html({ assetsMap, children }) {
   return (
     <html lang="en">
       <head>
@@ -11,11 +11,17 @@ export function Html({ children }) {
         />
 
         <link rel="icon" type="image/svg+xml" href="/react.svg" />
-        <link rel="stylesheet" href="/static/style.css" />
+
+        {assetsMap.css.map((href) => (
+          <link key={href} rel="stylesheet" href={href} />
+        ))}
       </head>
 
       <body>
         <div id="root">{children}</div>
+        {assetsMap.js.map((src) => (
+          <script key={src} type="module" src={src} defer />
+        ))}{" "}
       </body>
     </html>
   );

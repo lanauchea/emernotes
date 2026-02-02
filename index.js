@@ -24,7 +24,7 @@ app.use(
 app.use(compression());
 
 // static / client assets
-app.use("/static", express.static(resolve("client")));
+app.use("/static", express.static(resolve("./client")));
 app.use(express.static(resolve("../public")));
 
 // catch-all handler
