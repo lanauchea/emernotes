@@ -2,7 +2,6 @@ import path from "node:path";
 import tailwindcss from "@tailwindcss/postcss";
 import postcss from "./plugins/postcss.js";
 import svg from "./plugins/svg.js";
-import manifest from "esbuild-plugin-manifest";
 
 const workspace = process.cwd();
 const isProd = process.env.NODE_ENV === "production";
@@ -39,14 +38,6 @@ export const clientConfig = {
 
   outdir: path.join(workspace, "dist", "client"),
 
-  minify: isProd,
-  legalComments: "none",
-  sourcemap: isProd ? false : "external",
-
-  entryNames: isProd ? "[name]-[hash]" : "[name]",
-  chunkNames: isProd ? "chunks/[name]-[hash]" : "chunks/[name]",
-  assetNames: isProd ? "assets/[name]-[hash]" : "assets/[name]",
-
   logLevel: "error",
   logOverride: {
     "unsupported-dynamic-import": "silent",
@@ -61,6 +52,5 @@ export const clientConfig = {
       extract: true,
       minimize: isProd,
     }),
-    manifest({ hash: true }),
   ],
 };

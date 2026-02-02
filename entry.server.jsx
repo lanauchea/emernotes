@@ -1,5 +1,4 @@
 import { renderToPipeableStream } from "react-dom/server";
-import { assetsMap } from "@/shared/assets";
 import { routes } from "@/App";
 import {
   createStaticHandler,
@@ -27,7 +26,7 @@ export async function render(request, response) {
 
   const { pipe, abort } = renderToPipeableStream(
     <StrictMode>
-      <Html assetsMap={assetsMap}>
+      <Html>
         <StaticRouterProvider
           router={router}
           context={context}
@@ -36,6 +35,7 @@ export async function render(request, response) {
       </Html>
     </StrictMode>,
     {
+      bootstrapModules: ["/static/app.js"],
       onShellError(err) {
         console.error("[ssr]: shell error: ", err);
         response.status(statusCode).send("<h1>Something went wrong</h1>");
