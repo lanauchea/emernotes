@@ -3,16 +3,16 @@ import path from "node:path";
 
 const manifestPath = path.resolve("dist/client/manifest.json");
 
-const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+const raw = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
 
-const toStatic = (p) => `/static/${p.replace(/^\//, "")}`;
+const normalize = (p) => "/static/" + p.replace(/^dist\/client\//, "");
 
 export const assetsMap = {
-  js: Object.values(manifest)
-    .filter((v) => typeof v === "string" && v.endsWith(".js"))
-    .map(toStatic),
+  js: Object.values(raw)
+    .filter((p) => p.endsWith(".js"))
+    .map(normalize),
 
-  css: Object.values(manifest)
-    .filter((v) => typeof v === "string" && v.endsWith(".css"))
-    .map(toStatic),
+  css: Object.values(raw)
+    .filter((p) => p.endsWith(".css"))
+    .map(normalize),
 };
