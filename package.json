@@ -6,7 +6,7 @@
   "author": "La Nauchéa <https://github.com/lanauchea>",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=production node scripts/task build",
+    "build": "cross-env NODE_ENV=production node scripts/task build && mkdir -p public/static && cp -r dist/client/* public/static/",
     "dev": "cross-env NODE_ENV=development node --env-file=.env scripts/task dev",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node --env-file=.env dist/index.js"
