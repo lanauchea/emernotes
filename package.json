@@ -1,0 +1,41 @@
+{
+  "name": "emernotes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "author": "La Nauchéa <https://github.com/lanauchea>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production node scripts/task build",
+    "dev": "cross-env NODE_ENV=development node --env-file=.env scripts/task dev",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node --env-file=.env dist/index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jose": "^6.1.3",
+    "mongoose": "^9.1.5",
+    "morgan": "^1.10.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router": "^7.13.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "cross-env": "^10.1.0",
+    "esbuild": "^0.27.2",
+    "esbuild-plugin-manifest": "^1.0.5",
+    "postcss": "^8.5.6",
+    "svgo": "^4.0.0",
+    "tailwindcss": "^4.1.18"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@10.28.2"
+}

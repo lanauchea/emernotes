@@ -1,0 +1,12 @@
+import { data } from "react-router";
+
+export function loader() {
+  throw data(null, {
+    status: 404,
+    statusText: "Could not found requested page.",
+  });
+}
+
+export default function NotFound() {
+  return null;
+}
