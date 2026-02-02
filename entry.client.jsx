@@ -3,7 +3,6 @@ import { hydrateRoot } from "react-dom/client";
 import { createBrowserRouter, matchRoutes } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { routes } from "@/App";
-import "./globals.css";
 
 let lazyMatches = matchRoutes(routes, window.location)?.filter(
   (m) => m.route.lazy,
